@@ -6,6 +6,9 @@
 #define IL inline
 #define read(x) scanf("%d",&x)
 using namespace std;
+int step;
+int demox[5007][5];
+char demo[5007][70][70];
 char mp[200][200];
 int fi[200][200];
 char xt1[5]={'-','X','X','X','-'};
@@ -24,6 +27,7 @@ int a1,a2,b1,b2;
 int n,m;
 IL void run()
 {
+	step++;
 	lc1--;
 	lc2--;
 	register int i,j;
@@ -32,6 +36,10 @@ IL void run()
 		printf("N");
 	}
 	printf("\nN");
+	demox[step][1]=x1;
+	demox[step][2]=lc1;
+	demox[step][3]=x2;
+	demox[step][4]=lc2;
 	for(i=1;i<=n;i++)
 	{
 		for(j=1;j<=m;j++)
@@ -45,6 +53,7 @@ IL void run()
 				fi[i][j]--;
 			}
 			printf("%c",mp[i][j]);
+			demo[step][i][j]=mp[i][j];
 		}
 		printf("N\nN");
 	}
@@ -340,18 +349,18 @@ IL void did()
 	{
 		system("cls");
 		printf("NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN\n");
-		printf("N Player1's blood:%d NNNNNNNN Player2's blood:%d N\n",x1,x2);
+		printf("N Player1's blood:%d NNNNNNNN Player2's blood:%d N   step:%d\n",x1,x2,step);
 		printf("N      +%c%c%c%c+   %d                 +%c%c%c%c+   %d   N\n",xt1[1],xt1[2],xt1[3],xt1[4],-lc1,xt2[1],xt2[2],xt2[3],xt2[4],-lc2);
 		printf("NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN\n");
 		run();
 		if(x2==0)
 		{
 			MessageBox(NULL,"Player1 wins","*",MB_OK|MB_ICONINFORMATION);
-			exit(0);
+			return;
 		}else if(x1==0)
 		{
 			MessageBox(NULL,"Player2 wins","*",MB_OK|MB_ICONINFORMATION);
-			exit(0);
+			return;
 		}
 	}
 }
@@ -430,8 +439,25 @@ TestMap
 */
 int main()
 {
+	int pd;
+	int i,j,k;
 	freopen("pvp.nmzl","r",stdin);
 	input();
+	MessageBox(NULL,"地图加载完毕\n\n新手提示:\n左上角显示玩家血量及法力值（每次操作增加1）\nPlayer1:@\n	使用WASD移动\n	E使用攻击技能(消耗5法力，伤害1)\n	Q使用换位技能\nPlayer2:&\n	使用8456移动\n	7使用攻击技能(消耗5法力，伤害1)\n	9使用换位技能\n地图：\n	#代表可使用技能破坏的墙\n	%代表不可破坏的墙\n	$代表回血丸（每次回血一滴，每人最多4滴血）\n	.代表路\n","*",MB_OK|MB_ICONINFORMATION);
 	did();
+	freopen("mmp.demo","w",stdout);
+	printf("%d %d %d\n",m,n,step);
+	for(i=1;i<=step;i++)
+	{
+		printf("%d %d %d %d\n",demox[i][1],demox[i][2],demox[i][3],demox[i][4]);
+		for(j=1;j<=n;j++)
+		{
+			for(k=1;k<=m;k++)
+			{
+				printf("%c",demo[i][j][k]);
+			}
+			printf("\n");
+		}
+	}
 	return 0;
 } 
