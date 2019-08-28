@@ -23,7 +23,7 @@ int a1,a2,b1,b2;
 // .->way
 // *->fire
 // #->wall
-// 
+//
 int n,m;
 IL void run()
 {
@@ -266,7 +266,7 @@ IL void run()
 			{
 				mp[a1+1][b1]='*';
 				fi[a1+1][b1]=3;
-			} 
+			}
 		}
 		if(b1>1)
 		{
@@ -281,7 +281,7 @@ IL void run()
 			if(mp[a1][b1+1]!='%')
 			{
 				mp[a1][b1+1]='*';
-				fi[a1][b1+1]=3; 
+				fi[a1][b1+1]=3;
 			}
 		}
 	}
@@ -330,7 +330,7 @@ IL void run()
 			if(mp[a2][b2-1]!='%')
 			{
 				mp[a2][b2-1]='*';
-				fi[a2][b2-1]=3; 
+				fi[a2][b2-1]=3;
 			}
 		}
 		if(b2<m)
@@ -374,6 +374,8 @@ IL void input()
 	read(b2);
 	getchar();
 	reg int i,j;
+	reg double nowprocess;
+	printf("The map is loading\n");
 	for(i=1;i<=n;i++)
 	{
 		for(j=1;j<=m;j++)
@@ -381,12 +383,12 @@ IL void input()
 			scanf("%c",&mp[i][j]);
 		}
 		scanf("\n");
+		printf("The map is loading... %.2lf\%",i / n * 100.00);
 	}
 	system("cls");
-	printf("The map is loading\n");
-	printf("NNNNNNNN\n");
-	printf("NX-----N\n");
-	printf("NNNNNNNN\n");
+    printf("NNNNNNNN\n");
+    printf("NX-----N\n");
+    printf("NNNNNNNN\n");
 	Sleep(300);
 	system("cls");
 	printf("The map is loading\n");
@@ -434,17 +436,24 @@ TestMap
 ...$#...
 ....#...
 .
-*/ 
-/* 
+*/
+/*
 */
 int main()
 {
-	int pd;
-	int i,j,k;
+    system("start randomMap.exe");
+    Sleep(1000);
+	reg int pd;
+	reg int i,j,k;
 	freopen("pvp.nmzl","r",stdin);
 	input();
 	MessageBox(NULL,"地图加载完毕\n\n新手提示:\n左上角显示玩家血量及法力值（每次操作增加1）\nPlayer1:@\n	使用WASD移动\n	E使用攻击技能(消耗5法力，伤害1)\n	Q使用换位技能\nPlayer2:&\n	使用8456移动\n	7使用攻击技能(消耗5法力，伤害1)\n	9使用换位技能\n地图：\n	#代表可使用技能破坏的墙\n	%代表不可破坏的墙\n	$代表回血丸（每次回血一滴，每人最多4滴血）\n	.代表路\n","*",MB_OK|MB_ICONINFORMATION);
 	did();
+	reg int pppddd = MessageBox(NULL,"你想观看游戏回放吗？\nDo you want to watch demo?","*",MB_YESNO|MB_ICONQUESTION);
+	if(pppddd == 7)
+    {
+        return 0;
+    }
 	freopen("mmp.demo","w",stdout);
 	printf("%d %d %d\n",m,n,step);
 	for(i=1;i<=step;i++)
@@ -459,5 +468,6 @@ int main()
 			printf("\n");
 		}
 	}
+	system("start demoplayer.exe");
 	return 0;
-} 
+}

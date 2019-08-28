@@ -34,7 +34,7 @@ int main()
             {
                 printf("%c",'%');
             }
-            else if(2 == r % 5 + 1)
+            else if(2 == r % 3 + 1)
             {
                 printf("#");
             }
