@@ -4,6 +4,7 @@
 #include <iostream>
 #include <algorithm>
 #include <windows.h>
+#define reg register
 using namespace std;
 //# -> wall
 //. -> way
@@ -181,10 +182,19 @@ inline void did()
 		}
 	}
 }
+char mapselect[11];
+inline void selectMap()
+{
+    reg char a1,a2;
+    printf("请输入地图编号(请按照2位数的格式输入,如01，02，10，72等，目前仅有7张地图，因此输入07以上的数字程序会报错):\n");
+    scanf("%c%c",&a1,&a2);
+    sprintf(mapselect,"map%c%c.nmsl",a1,a2);
+}
 int main()
 {
 	register int i,j;
-	freopen("map.nmsl","r",stdin);
+	selectMap();
+	freopen(mapselect,"r",stdin);
 	scanf("%d%d%d%d",&n,&m,&x,&y);
 	getchar();
 	//printf("%d",n);
