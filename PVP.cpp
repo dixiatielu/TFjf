@@ -11,10 +11,10 @@ int demox[5007][5];
 char demo[5007][70][70];
 char mp[200][200];
 int fi[200][200];
-char xt1[5]={'-','X','X','X','-'};
-int x1=3;
-char xt2[5]={'-','X','X','X','-'};
-int x2=3;
+char xt1[5]={'-','X','X','-','-'};
+int x1=2;
+char xt2[5]={'-','X','X','-','-'};
+int x2=2;
 int lc1=-35,lc2=-35;
 int a1,a2,b1,b2;
 // $->x add
